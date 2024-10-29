@@ -1,19 +1,16 @@
-#Escriba un programa que pida al usuario un entero de tres dígitos, y entregue el número con los dígitos en orden inverso:
+#Escriba un programa que reciba como entrada las longitudes de los dos catetos a y b de un triángulo rectángulo,
+# y que entregue como salida el largo de la hipotenusa c del triangulo, dado por el teorema de Pitágoras: c2=a2+b2.
 
-#Ingrese numero: 345
-#543
-#Ingrese numero: 241
-#142
+#Ingrese cateto a: 7
+#Ingrese cateto b: 5
+#La hipotenusa es 8.6023252670426267
 
-numero = input("Por favor, ingrese un número entero de tres dígitos: ")
+import math
 
+a = float(input("Ingrese la longitud del cateto a: "))
 
-if numero.isdigit() and len(numero) == 3:
-    
-    numero_invertido = numero[::-1]
+b = float(input("Ingrese la longitud del cateto b: "))
 
-    print("El número con los dígitos en orden inverso es:", numero_invertido)
+c = math.sqrt(a**2 + b**2)
 
-else:
-    
-    print("Error: Debe ingresar un número entero de tres dígitos.")
+print(f"La longitud de la hipotenusa c es: {c:.2f}")
