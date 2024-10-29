@@ -1,32 +1,43 @@
-#Un alumno desea saber que nota necesita en el tercer certamen para aprobar un ramo.
+#Cuando un huevo es hervido en agua, las proteínas comienzan a coagularse cuando la temperatura sobrepasa un punto crítico. 
+#A medida que la temperatura aumenta, las reacciones se aceleran.
 
-#El promedio del ramo se calcula con la siguiente formula.
-
-#NC=(C1+C2+C3)3
-#NF=NC⋅0.7+NL⋅0.3
-# Donde NC es el promedio de certámenes, 
- # NL el promedio de laboratorio y 
- # NF la nota final.
-
-#Escriba un programa que pregunte al usuario las notas de los dos primeros certamen y la nota de laboratorio, y muestre la nota que necesita el alumno para aprobar el ramo con nota final 60.
-
-#Ingrese nota certamen 1: 45
-#Ingrese nota certamen 2: 55
-#Ingrese nota laboratorio: 65
-#Necesita nota 72 en el certamen 3
+#En la clara, las proteínas comienzan a coagularse para temperaturas sobre 63°C, mientras que en la yema lo hacen para temperaturas sobre 70°C.
+#Para hacer un huevo a la copa, la clara debe haber sido calentada lo suficiente para coagularse a más de 63°C,
+#pero la yema no debe sobrepasar los 70°C para evitar obtener un huevo duro.
 
 
-Certamen1 = float(input("Ingrese la nota del primer certamen: "))
-Certamen2 = float(input("Ingrese la nota del segundo certamen: "))
-NL = float(input("Ingrese la nota de laboratorio: "))
+#El tiempo en segundos que toma al centro de la yema alcanzar Ty °C está dado por la fórmula:
+
+#t=M2/3cρ1/3Kπ2(4π/3)2/3ln[0.76To−TwTy−Tw],
+#donde M es la masa del huevo,
+#ρ su densidad, 
+#c su capacidad calorífica específica y 
+#K su conductividad térmica.
+#Algunos valores típicos son:
+
+#M=47[g] para un huevo pequeño y M=67[g] para uno grande,
+#ρ=1.038[gcm−3],
+#c=3.7[Jg−1K−1], y
+#K=5.4⋅10−3[Wcm−1K−1].
+#Tw es la temperatura de ebullición del agua y 
+#To la temperatura original del huevo antes de meterlo al agua, ambos en grados Celsius.
+
+#Escriba un programa que reciba como entrada la temperatura original del huevo y 
+# muestre como salida el tiempo en segundos que le toma alcanzar la temperatura máxima para prepararlo a la copa.
 
 
-NF_necesaria = 60
+import math
 
+M = 47  
+rho = 1.038  
+c = 3.7  
+K = 5.4e-3  
+Tw = 100  
+Ty = 70  
 
-Certamen3 = (NF_necesaria - (NL * 0.3)) * (3 / 0.7) - Certamen1 - Certamen2
+To = float(input("Ingrese la temperatura original del huevo (en °C): "))
 
-if Certamen3 >= 0:
-    print(f"La nota que necesita en el tercer certamen 3 para aprobar es: {Certamen3:.2f}")
-else:
-    print("Ya ha aprobado el ramo, no necesita ninguna nota en el tercer certamen.")
+t = (M**(2/3) * c * rho**(1/3) * K * math.pi**2 * (4 * math.pi / 3)**(2/3) * 
+     math.log((0.76 * To - Tw) / (Ty - Tw)))
+
+print(f"El tiempo en segundos que le toma al huevo alcanzar la temperatura máxima es: {t:.2f} segundos.")
